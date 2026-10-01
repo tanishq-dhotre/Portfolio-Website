@@ -295,6 +295,11 @@ h2.landing-info-h2 {
   .character-model {
     height: 100vh;
     bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    margin: auto;
+    transform: none;
     z-index: 11;
     position: fixed;
   }
