@@ -6,11 +6,13 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(useGSAP);
 
+const assetBase = import.meta.env.BASE_URL;
+
 const projects = [
   {
     title: "BlinkGuard",
     category: "AI Drowsiness Detection",
-    image: "/images/work-blinkguard.webp",
+    image: `${assetBase}images/work-blinkguard.webp`,
     imageLabel: "Driver monitoring",
     description:
       "A real-time driver monitoring system that analyzes facial cues and eye blinks, then triggers alerts to support safer driving.",
@@ -19,7 +21,7 @@ const projects = [
   {
     title: "OpenTruth",
     category: "Student Decision Platform",
-    image: "/images/work-opentruth.webp",
+    image: `${assetBase}images/work-opentruth.webp`,
     imageLabel: "Student perspectives",
     description:
       "A student-focused platform for sharing authentic experiences and feedback to help students make informed academic decisions.",
@@ -28,7 +30,7 @@ const projects = [
   {
     title: "AI Drowsiness Detector",
     category: "Computer Vision",
-    image: "/images/work-computer-vision.webp",
+    image: `${assetBase}images/work-computer-vision.webp`,
     imageLabel: "Face and eye analysis",
     description:
       "An AI-based drowsiness detection project using visual input and image-processing techniques to identify signs of fatigue.",
@@ -38,44 +40,42 @@ const projects = [
 
 const Work = () => {
   useGSAP(() => {
-  let translateX: number = 0;
+    let translateX = 0;
 
-  function setTranslateX() {
-    const box = document.getElementsByClassName("work-box");
-    const rectLeft = document
-      .querySelector(".work-container")!
-      .getBoundingClientRect().left;
-    const rect = box[0].getBoundingClientRect();
-    const parentWidth = box[0].parentElement!.getBoundingClientRect().width;
-    let padding: number =
-      parseInt(window.getComputedStyle(box[0]).padding) / 2;
-    translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
-  }
+    function setTranslateX() {
+      const box = document.getElementsByClassName("work-box");
+      const rectLeft = document
+        .querySelector(".work-container")!
+        .getBoundingClientRect().left;
+      const rect = box[0].getBoundingClientRect();
+      const parentWidth = box[0].parentElement!.getBoundingClientRect().width;
+      const padding = parseInt(window.getComputedStyle(box[0]).padding) / 2;
+      translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
+    }
 
-  setTranslateX();
+    setTranslateX();
 
-  let timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".work-section",
-      start: "top top",
-      end: `+=${translateX}`, // Use actual scroll width
-      scrub: true,
-      pin: true,
-      id: "work",
-    },
-  });
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".work-section",
+        start: "top top",
+        end: `+=${translateX}`,
+        scrub: true,
+        pin: true,
+        id: "work",
+      },
+    });
 
-  timeline.to(".work-flex", {
-    x: -translateX,
-    ease: "none",
-  });
+    timeline.to(".work-flex", {
+      x: -translateX,
+      ease: "none",
+    });
 
-  // Clean up (optional, good practice)
-  return () => {
-    timeline.kill();
-    ScrollTrigger.getById("work")?.kill();
-  };
-}, []);
+    return () => {
+      timeline.kill();
+      ScrollTrigger.getById("work")?.kill();
+    };
+  }, []);
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./styles/Navbar.css";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
@@ -23,14 +23,15 @@ const Navbar = () => {
     smoother.scrollTop(0);
     smoother.paused(true);
 
-    let links = document.querySelectorAll(".header ul a");
+    const links = document.querySelectorAll(".header ul a");
     links.forEach((elem) => {
-      let element = elem as HTMLAnchorElement;
+      const element = elem as HTMLAnchorElement;
       element.addEventListener("click", (e) => {
         if (window.innerWidth > 1024) {
           e.preventDefault();
-          let elem = e.currentTarget as HTMLAnchorElement;
-          let section = elem.getAttribute("data-href");
+          const currentTarget = e.currentTarget as HTMLAnchorElement;
+          const section = currentTarget.getAttribute("data-href") ?? "";
+          if (!section) return;
           smoother.scrollTo(section, true, "top top");
         }
       });
@@ -42,7 +43,7 @@ const Navbar = () => {
   return (
     <>
       <div className="header">
-        <a href="/#" className="navbar-title" data-cursor="disable">
+        <a href={`${import.meta.env.BASE_URL}#`} className="navbar-title" data-cursor="disable">
           TD
         </a>
         <a

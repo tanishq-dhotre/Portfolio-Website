@@ -2,8 +2,7 @@
   position: fixed;
   width: 100vw;
   height: var(--vh);
-  /* background-image: linear-gradient(#cbb1ff, #d8c4ff); */
-  background-color: #eae5ec;
+  background: radial-gradient(circle at center, #201823 0%, #0b080c 55%, #07070a 100%);
   z-index: 999999999;
   display: flex;
   place-items: center;
@@ -12,7 +11,7 @@
 .loading-button {
   padding: 20px 50px;
   border-radius: 100px;
-  background-color: #000;
+  background-color: #120d16;
   overflow: hidden;
   font-size: 18px;
   font-weight: 500;
@@ -48,7 +47,7 @@
   min-width: 0px;
   min-height: 0px;
   border-radius: 100px;
-  background-color: #000;
+  background-color: #120d16;
   overflow: hidden;
   transition: 0.8s ease-in-out;
   transition-delay: 0.2s;
@@ -92,7 +91,7 @@
 }
 .loading-content {
   position: relative;
-  background-color: #000;
+  background-color: #120d16;
   width: 100%;
   overflow: hidden;
   transition: 0.6s;

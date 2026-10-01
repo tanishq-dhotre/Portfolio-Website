@@ -10,28 +10,48 @@ const Loading = ({ percent }: { percent: number }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
 
-  if (percent >= 100) {
-    setTimeout(() => {
+  useEffect(() => {
+    if (percent < 100) {
+      return;
+    }
+
+    const loadTimer = window.setTimeout(() => {
       setLoaded(true);
-      setTimeout(() => {
+      const isLoadedTimer = window.setTimeout(() => {
         setIsLoaded(true);
       }, 1000);
+
+      return () => window.clearTimeout(isLoadedTimer);
     }, 600);
-  }
+
+    return () => window.clearTimeout(loadTimer);
+  }, [percent]);
 
   useEffect(() => {
+    if (!isLoaded) {
+      return;
+    }
+
+    let cancelled = false;
+
     import("./utils/initialFX").then((module) => {
-      if (isLoaded) {
-        setClicked(true);
-        setTimeout(() => {
-          if (module.initialFX) {
-            module.initialFX();
-          }
-          setIsLoading(false);
-        }, 900);
-      }
+      if (cancelled) return;
+
+      setClicked(true);
+      const initTimer = window.setTimeout(() => {
+        if (module.initialFX) {
+          module.initialFX();
+        }
+        setIsLoading(false);
+      }, 900);
+
+      return () => window.clearTimeout(initTimer);
     });
-  }, [isLoaded]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isLoaded, setIsLoading]);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
     const { currentTarget: target } = e;
@@ -45,7 +65,7 @@ const Loading = ({ percent }: { percent: number }) => {
   return (
     <>
       <div className="loading-header">
-        <a href="/#" className="loader-title" data-cursor="disable">
+        <a href={`${import.meta.env.BASE_URL}#`} className="loader-title" data-cursor="disable">
           TD
         </a>
         <div className={`loaderGame ${clicked && "loader-out"}`}>
@@ -97,7 +117,7 @@ export const setProgress = (setLoading: (value: number) => void) => {
 
   let interval = setInterval(() => {
     if (percent <= 50) {
-      let rand = Math.round(Math.random() * 5);
+      const rand = Math.round(Math.random() * 5);
       percent = percent + rand;
       setLoading(percent);
     } else {
