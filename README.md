@@ -3,7 +3,6 @@
 This repository contains the open-source version of my personal portfolio website.  
 Feel free to explore the code and use it for learning and inspiration.
 
----
 
 ## ⚠️ Usage Notice
 
@@ -19,19 +18,11 @@ If you use parts of the code, you must provide proper credit linking back to the
 
 Build your own version — don’t just copy.
 
-— Moncy Yohannan
+— Tanishq Dhotre
 
 ---
 
-## 🛠️ Instructions
 
-I have modified the GSAP Club plugins using trial versions.  
-⚠️ Note: Trial plugins cannot be used for production or hosting.
-
-For official GSAP Club plugins, refer here:  
-https://gsap.com/docs/v3/Installation/
-
----
 
 ## ⚙️ Tech Stack
 
@@ -51,11 +42,6 @@ However:
 
 Any usage, extraction, or redistribution of that avatar from my live website is strictly prohibited.
 
----
-
-![Protfolio-Preview](https://github.com/user-attachments/assets/3c4557e7-6392-4928-b8a9-7b2476ef4edd)
-
----
 
 ## 📄 License
 
