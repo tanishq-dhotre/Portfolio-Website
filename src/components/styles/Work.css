@@ -92,6 +92,12 @@
 }
 .work-image-in {
   position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #17151b;
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 .work-link {
   position: absolute;
@@ -126,13 +132,32 @@
   object-fit: cover;
 }
 .work-image img {
-  max-width: 100%;
-  max-height: 350px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 350ms ease;
+}
+.work-image-in:hover img {
+  transform: scale(1.035);
+}
+.work-image-label {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  max-width: calc(100% - 24px);
+  padding: 7px 10px;
+  color: #fff;
+  background: rgba(13, 12, 16, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  backdrop-filter: blur(8px);
 }
 @media only screen and (max-height: 900px) {
-  .work-image img {
-    max-height: 250px;
-  }
   .work-box {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -177,9 +202,6 @@
 }
 
 @media only screen and (max-height: 650px) {
-  .work-image img {
-    max-height: 200px;
-  }
   .work-section h2 {
     font-size: 40px;
     margin-bottom: 20px;

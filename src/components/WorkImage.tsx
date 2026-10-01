@@ -6,6 +6,7 @@ interface Props {
   alt?: string;
   video?: string;
   link?: string;
+  label?: string;
 }
 
 const WorkImage = (props: Props) => {
@@ -38,6 +39,7 @@ const WorkImage = (props: Props) => {
         )}
         <img src={props.image} alt={props.alt} />
         {isVideo && <video src={video} autoPlay muted playsInline loop></video>}
+        {props.label && <span className="work-image-label">{props.label}</span>}
       </a>
     </div>
   );

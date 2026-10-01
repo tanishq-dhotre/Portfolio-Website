@@ -6,9 +6,11 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-          dolores numquam iusto Ratione earum ducimus autem id iure pariatur
-          dolorum quae maiores.
+          I'm Tanishq Dhotre, a second-year B.Tech student in Artificial
+          Intelligence and Data Science at NIAT, Sanjay Ghodawat University. I
+          build practical full-stack applications and computer-vision projects,
+          and keep strengthening my foundations in programming, databases,
+          data structures, and problem solving.
         </p>
       </div>
     </div>

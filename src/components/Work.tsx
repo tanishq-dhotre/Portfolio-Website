@@ -6,6 +6,36 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(useGSAP);
 
+const projects = [
+  {
+    title: "BlinkGuard",
+    category: "AI Drowsiness Detection",
+    image: "/images/work-blinkguard.webp",
+    imageLabel: "Driver monitoring",
+    description:
+      "A real-time driver monitoring system that analyzes facial cues and eye blinks, then triggers alerts to support safer driving.",
+    technologies: "Python, OpenCV, MediaPipe, NumPy, C++, Arduino IDE",
+  },
+  {
+    title: "OpenTruth",
+    category: "Student Decision Platform",
+    image: "/images/work-opentruth.webp",
+    imageLabel: "Student perspectives",
+    description:
+      "A student-focused platform for sharing authentic experiences and feedback to help students make informed academic decisions.",
+    technologies: "HTML, CSS, JavaScript, Node.js, Express.js, MongoDB",
+  },
+  {
+    title: "AI Drowsiness Detector",
+    category: "Computer Vision",
+    image: "/images/work-computer-vision.webp",
+    imageLabel: "Face and eye analysis",
+    description:
+      "An AI-based drowsiness detection project using visual input and image-processing techniques to identify signs of fatigue.",
+    technologies: "Python, OpenCV",
+  },
+];
+
 const Work = () => {
   useGSAP(() => {
   let translateX: number = 0;
@@ -53,21 +83,26 @@ const Work = () => {
           My <span>Work</span>
         </h2>
         <div className="work-flex">
-          {[...Array(6)].map((_value, index) => (
-            <div className="work-box" key={index}>
+          {projects.map((project, index) => (
+            <div className="work-box" key={project.title}>
               <div className="work-info">
                 <div className="work-title">
-                  <h3>0{index + 1}</h3>
+                  <h3>{String(index + 1).padStart(2, "0")}</h3>
 
                   <div>
-                    <h4>Project Name</h4>
-                    <p>Category</p>
+                    <h4>{project.title}</h4>
+                    <p>{project.category}</p>
                   </div>
                 </div>
-                <h4>Tools and features</h4>
-                <p>Javascript, TypeScript, React, Threejs</p>
+                <p>{project.description}</p>
+                <h4>Technologies</h4>
+                <p>{project.technologies}</p>
               </div>
-              <WorkImage image="/images/placeholder.webp" alt="" />
+              <WorkImage
+                image={project.image}
+                alt={`${project.title}: ${project.imageLabel}`}
+                label={project.imageLabel}
+              />
             </div>
           ))}
         </div>
