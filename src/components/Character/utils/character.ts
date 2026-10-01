@@ -28,6 +28,7 @@ const setCharacter = (
             blobUrl,
             async (gltf) => {
               const character = gltf.scene;
+              styleCharacter(character);
               await renderer.compileAsync(character, camera, scene);
               character.traverse((child: THREE.Object3D) => {
                 if (child instanceof THREE.Mesh) {
@@ -61,5 +62,49 @@ const setCharacter = (
 
   return { loadCharacter };
 };
+
+function styleCharacter(character: THREE.Object3D) {
+  recolorMesh(character, "BODY.SHIRT", "#d62839");
+  recolorMesh(character, "Pant", "#17171b");
+  recolorMesh(character, "Shoe", "#f4f4f6");
+}
+
+function recolorMesh(
+  character: THREE.Object3D,
+  name: string,
+  color: THREE.ColorRepresentation
+) {
+  const meshes: THREE.Mesh[] = [];
+  const normalizedName = name.toLowerCase().replace(/[^a-z0-9]/g, "");
+  character.traverse((object) => {
+    if (
+      object instanceof THREE.Mesh &&
+      object.name.toLowerCase().replace(/[^a-z0-9]/g, "") === normalizedName
+    ) {
+      meshes.push(object);
+    }
+  });
+  const mesh = meshes[0];
+  if (!mesh) {
+    console.warn(`Character outfit mesh "${name}" was not found.`);
+    return;
+  }
+
+  const materials = Array.isArray(mesh.material)
+    ? mesh.material
+    : [mesh.material];
+  const recoloredMaterials = materials.map((material) => {
+    const clonedMaterial = material.clone();
+    if (clonedMaterial instanceof THREE.MeshStandardMaterial) {
+      clonedMaterial.color.set(color);
+      clonedMaterial.roughness = 0.78;
+      clonedMaterial.metalness = 0.05;
+    }
+    return clonedMaterial;
+  });
+  mesh.material = Array.isArray(mesh.material)
+    ? recoloredMaterials
+    : recoloredMaterials[0];
+}
 
 export default setCharacter;

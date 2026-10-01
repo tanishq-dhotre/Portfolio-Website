@@ -52,14 +52,14 @@
 
 .what-noTouch:hover,
 .what-content-active {
-  min-height: 67%;
-  padding: 40px 50px;
+  min-height: 80%;
+  padding: 32px 50px;
 }
 
 .what-noTouch:hover ~ .what-content,
 .what-box-in:hover .what-noTouch:not(:hover),
 .what-content.what-sibling {
-  min-height: 33%;
+  min-height: 20%;
   padding: 10px 50px;
 }
 .what-content h3 {
@@ -263,7 +263,7 @@
   }
   .what-noTouch:hover,
   .what-content-active {
-    padding: 20px 30px;
+    padding: 10px 30px;
   }
 
   .what-noTouch:hover ~ .what-content,
@@ -302,14 +302,14 @@
   }
   .what-noTouch:hover,
   .what-content-active {
-    min-height: 67%;
+    min-height: 80%;
     padding: 50px;
   }
 
   .what-noTouch:hover ~ .what-content,
   .what-box-in:hover .what-noTouch:not(:hover),
   .what-content.what-sibling {
-    min-height: 33%;
+    min-height: 20%;
     padding: 10px 50px;
   }
 }
