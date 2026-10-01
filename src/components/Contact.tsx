@@ -35,7 +35,7 @@ const Contact = () => {
               Github <MdArrowOutward />
             </a>
             <a
-              href="https://www.linkedin.com/in/tanishq-kishor-dhotre"
+              href="https://www.linkedin.com/in/tanishq-kishor-dhotre-ba49b5373/?isSelfProfile=true"
               target="_blank"
               rel="noreferrer"
               data-cursor="disable"
